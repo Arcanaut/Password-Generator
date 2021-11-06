@@ -20,15 +20,6 @@ var passwordNumbers = ["'1','2','3','4','5','6','7','8','9'"]
 //end of key selection
 
 //variables for prompts
-var passLow = confirm("Include lower-case letters in your password?");
-
-var passUpp = confirm("Include upper-case numbers in your password?")
-
-var passSpec = confirm("Include special characters in your password?")
-
-var passNum = confirm("Include Numbers in your password?");
-//end of prompt variables
-// end of variables
 
 
 
@@ -47,25 +38,36 @@ function generatePassword() {
 //if entry is anything besides a # between 6-128 alert is prompted  
 if (passLength < 8 || passLength >128 || isNaN(passLength)) {  
 alert("ERROR: Entry must be a number between 8 and 128. ")
+return;
 
 }
 
 alert("You have chosen your password to be " + passLength + " characters long.")
 
+
+var passLow = confirm("Include lower-case letters in your password?");
+
+var passUpp = confirm("Include upper-case numbers in your password?")
+
+var passSpec = confirm("Include special characters in your password?")
+
+var passNum = confirm("Include Numbers in your password?");
+
+
 if (passwordNum === true){
-passArray.concat(passNumbers);
+passArray = passArray.concat(passNumbers);
 }
 
 if (passSpec === true){
-  passArray.concat(passwordSpecialCharacters);
+  passArray = passArray.concat(passwordSpecialCharacters);
 }
 
 if (passUpp === true){
-  passArray.concat(passwordUpperCase);
+  passArray = passArray.concat(passwordUpperCase);
 }
 
 if (passLow ===true){
-  passArray.concat(passwordLowerCase);
+  passArray = PassArray.concat(passwordLowerCase);
 }
   //length 8-128- set ceiling/floor 
 
@@ -77,7 +79,7 @@ if (passLow ===true){
 
   // 4. Display password on page
 
-  passArray = [""]
+  passArray = []
   return "generated password";
 
 }
@@ -93,3 +95,7 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+//loop over array pick 1 randomly until it matches the user set, and inserts in to a new array, with the new array storing the password
+
+//end up with character array and then turn that in to a string.
