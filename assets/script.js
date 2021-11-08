@@ -1,8 +1,6 @@
 // Assignment code here
 
 // Get references to the #generate element
-Math.floor(8, 128)
-
 var generateBtn = document.querySelector("#generate");
 
 //variables
@@ -16,7 +14,7 @@ var passwordSpecialCharacters = ["'!','@','#','$','%',';','^','&','*','(',')','-
 
 var passwordNumbers = ["'1','2','3','4','5','6','7','8','9'"];
 
-var i = 0
+
 
 
 // vars will need to go through catcatination and then use the math.random()
@@ -29,14 +27,15 @@ var i = 0
 
 function generatePassword() {
 
-  console.log("button clicked");
+
 
 
   // 1. prompt the user password for password length
 
-  passSize = prompt("Enter a number value between 8-128.");
+  passSize = parseInt(prompt("Enter a number value between 8-128."));
+  console.log(passSize);
   if (passSize === null) {
-    return;
+    return; 
   }
 
   //if entry is anything besides a # between 6-128 alert is prompted  
@@ -50,49 +49,76 @@ function generatePassword() {
 
 
   var passLow = confirm("Include lower-case letters in your password?");
-
+console.log(passLow);
   var passUpp = confirm("Include upper-case numbers in your password?");
 
   var passSpec = confirm("Include special characters in your password?");
 
   var passNum = confirm("Include Numbers in your password?");
 
-  passArray = "";
+  var possibleCharacters = [];
+  
+  var guaranteedCharacters = [];
+
+  var results = [];
 
   if (passNum === true) {
-    passArray = passArray.concat(passNumbers);
+    possibleCharacters = possibleCharacters.concat(passwordNumbers);
+    guaranteedCharacters.push(getRandom(passwordNumbers))
+    console.log(possibleCharacters);
+    console.log(guaranteedCharacters);
   }
 
   if (passSpec === true) {
-    passArray = passArray.concat(passwordSpecialCharacters);
+    possibleCharacters = possibleCharacters.concat(passwordSpecialCharacters);
+    guaranteedCharacters.push(getRandom(passwordSpecialCharacters));
   }
 
   if (passUpp === true) {
-    passArray = passArray.concat(passwordUpperCase);
+    possibleCharacters = possibleCharacters.concat(passwordUpperCase);
+    guaranteedCharacters.push(getRandom(passwordUpperCase));
   }
 
   if (passLow === true) {
-    passArray = PassArray.concat(passwordLowerCase);
+    possibleCharacters = possibleCharacters.concat(passwordLowerCase);
+    guaranteedCharacters.push(getRandom(passwordLowerCase));
   }
 
-  for (i - 0; i < passSize; i++)
-  {
-  var randomPassword = [Math.floor(Math.random)() * passArray.length];
-  }
- 
+
+  for (i = 0; i < passSize; i++) {
+  var possibleCharacter = getRandom(possibleCharacters)
+  results.push(possibleCharacter) 
+
+  };
+
+
+for (i = 0; i < guaranteedCharacters.length; i++){
+
+  results[i] = guaranteedCharacters[i];
+
 }
 
-return "generated password";
+return results.join("")
+};
+
+function getRandom(arr){
+  var randomIndex = Math.floor(Math.random() * arr.length ) 
+  var randomElement = arr[randomIndex]
+  console.log(randomElement);
+  return randomElement;
+
+};
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
+console.log(password);
+
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 
 }
-console.log
 //return array
 
 // Add event listener to generate button
