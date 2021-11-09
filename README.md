@@ -1,1 +1,1 @@
-# Password Generator Starter Code
+The purpose of this password generator is to allow an efficient, streamlined, way of creating passwords. Prompting the user for what parameters they would like in their passwords as well as length, the generator returns it in the text field for them to copy and paste.
